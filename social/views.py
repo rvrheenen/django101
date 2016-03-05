@@ -30,6 +30,10 @@ def home(request):
 
 @login_required
 def add_post(request):
+    new_post.poster = request.user
+    if 'photo' in request.FILES and request.FILES['photo'] is not None:
+        new_post.photo = request.FILES['photo']
+    new_post.save()
     check = _check_post_request(request, ['text'])
     if check[0]:
         new_post = Post()
