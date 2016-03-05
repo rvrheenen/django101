@@ -25,9 +25,8 @@ def social_login(request):
 
 @login_required
 def home(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('date_time')
     return render(request, 'social/home.html', {'posts': posts})
-
 
 @login_required
 def add_post(request):
